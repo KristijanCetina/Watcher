@@ -6,15 +6,11 @@ namespace Watcher
 {
     class Program
     {
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+
         public static void Main()
         {
-            Run();
 
-        }
-
-        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
-        public static void Run()
-        {
             string[] args = System.Environment.GetCommandLineArgs();
 
             // If a directory is not specified, exit program.
@@ -30,8 +26,7 @@ namespace Watcher
             watcher.Path = args[1];
             /* Watch for changes in LastAccess and LastWrite times, and
                the renaming of files or directories. */
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite
-               | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
             // Only watch text files.
             watcher.Filter = "*.txt";
 
@@ -61,5 +56,6 @@ namespace Watcher
             // Specify what is done when a file is renamed.
             Console.WriteLine("File: {0} renamed to {1}", e.OldFullPath, e.FullPath);
         }
+
     }
 }
