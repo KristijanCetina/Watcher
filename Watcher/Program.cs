@@ -28,7 +28,7 @@ namespace Watcher
                the renaming of files or directories. */
             watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
             // Only watch text files.
-            watcher.Filter = "*.txt";
+            watcher.Filter = "*.*";
 
             // Add event handlers.
             watcher.Changed += new FileSystemEventHandler(OnChanged);
