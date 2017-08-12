@@ -28,7 +28,7 @@ namespace Watcher
                the renaming of files or directories. */
             watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
             // Only watch text files.
-            watcher.Filter = "*.*";
+            //watcher.Filter = "*.txt";
 
             // Add event handlers.
             watcher.Changed += new FileSystemEventHandler(OnChanged);
@@ -49,6 +49,12 @@ namespace Watcher
         {
             // Specify what is done when a file is changed, created, or deleted.
             Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
+            //if(e.ChangeType == WatcherChangeTypes.Created)
+            //{
+            //    File.Move(e.FullPath, e.FullPath.Insert(e.FullPath.Length - 4,"2"));
+            //    System.Threading.Thread.Sleep(500);
+            //    File.Delete(e.FullPath);
+            //}
         }
 
         private static void OnRenamed(object source, RenamedEventArgs e)
